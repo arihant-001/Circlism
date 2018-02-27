@@ -17,6 +17,7 @@ These are some outputs of our project.
 5. Packing circles using the packing density.
 
 ## Step5
-The complexity of our circle packing is o(n*n*k) where n is the pixel size of the width and height of the given image and k is the number of circle of different denominations you want to add in the given image. Explaining the Algorithm firstly we are packing the circle with bigger denomination in order to ensure closed circle packing.Then considering each pixel value we are adding circles according to the EDT value at that point and marking a check over the entire range in order to ensure that no overlapping occurs.
+The complexity of our circle packing is o(n*n*k) where n is the pixel size of the width and height of the given image and k is the number of variable circles(using is for the distinction of different radii circles). Explaining the Algorithm firstly we are packing the circle with bigger denomination in order to ensure closed circle packing.Then considering each pixel value we are adding circles according to the EDT value at that point and marking a check over the entire range in order to ensure that no overlapping occurs.
+
 
 
