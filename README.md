@@ -6,8 +6,8 @@ This project consists of a algorithmic artwork. It is designed to apply digital 
 
 These are some outputs of our project.
 
-<img src="./out7.png" height="480px" width="480px">
-<img src="./leaf-out.png" height="480px" width="640px">
+<img src="./out7.png">
+<img src="./leaf-out.png">
 
 ## Steps
 1. Image Segementation using Mean Shift Filtering.
