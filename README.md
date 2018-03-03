@@ -6,8 +6,14 @@ This project consists of a algorithmic artwork. It is designed to apply digital 
 
 These are some outputs of our project.
 
-<img src="./out7.png">
-<img src="./leaf-out.png">
+<img src="./images/input/cart.jpg" width="400px">
+<img src="./images/output/cartoon_out.png"  width="400px">
+
+<img src="./images/input/minion.jpg"  width="400px">
+<img src="./images/output/minion_out.png"  width="400px">
+
+<img src="./images/input/leaf.jpg"  width="400px">
+<img src="./images/output/leaf_out.png"  width="400px">
 
 ## Steps
 1. Image Segementation using Mean Shift Filtering.
@@ -18,6 +24,3 @@ These are some outputs of our project.
 
 ## Step5
 The complexity of our circle packing is o(n*n*k) where n is the pixel size of the width and height of the given image and k is the number of discrete steps(used for the distinction of different radii circles). Explaining the Algorithm firstly we are packing the circle with bigger denomination in order to ensure closed circle packing.Then considering each pixel value we are adding circles according to the EDT value at that point and marking a check over the entire range in order to ensure that no overlapping occurs.
-
-
-
