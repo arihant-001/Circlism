@@ -6,21 +6,35 @@ This project consists of a algorithmic artwork. It is designed to apply digital 
 
 These are some outputs of our project.
 
-<img src="./images/input/cart.jpg" width="400px">
-<img src="./images/output/cartoon_out.png"  width="400px">
+<img src="./images/input/cart.jpg" width="400px"><img src="./images/output/cartoon_out.png"  width="400px">
 
-<img src="./images/input/minion.jpg"  width="400px">
-<img src="./images/output/minion_out.png"  width="400px">
+<img src="./images/input/minion.jpg"  width="400px"><img src="./images/output/minion_out.png"  width="400px">
 
-<img src="./images/input/leaf.jpg"  width="400px">
-<img src="./images/output/leaf_out.png"  width="400px">
+<img src="./images/input/leaf.jpg"  width="400px"><img src="./images/output/leaf_out.png"  width="400px">
 
-## Steps
-1. Image Segementation using Mean Shift Filtering.
-2. Removing background for better results.
-3. Canny Edge detection for boundaries.
-4. Euclidean distance transformation for packing density.
-5. Packing circles using the packing density.
+## Steps for Project accomplishment:
 
-## Step5
-The complexity of our circle packing is o(n*n*k) where n is the pixel size of the width and height of the given image and k is the number of discrete steps(used for the distinction of different radii circles). Explaining the Algorithm firstly we are packing the circle with bigger denomination in order to ensure closed circle packing.Then considering each pixel value we are adding circles according to the EDT value at that point and marking a check over the entire range in order to ensure that no overlapping occurs.
+1. Input Image
+2. Image Segmentation using Mean Shift Filtering
+3. Canny Edge Detection
+4. Some Image Filtering to reduce noise
+5. Euclidean Distance Transform of each pixel
+6. Background Separation 
+7. Closed Circle Packing with Circles of different denominations
+
+## Algorithm for Circle Packing:
+Deciding set of denomiations to get circles of variable denomination.Let this be stored in set D in decending order.
+```
+bool isOccupied[n][m]={false} // where n and m are the size of the image and initialise all pixel to false
+## Input image = I;
+for each radius in D:
+  for each pixel in I:
+    if EDT(p) >= radius && isOccupied[pixel] == False:
+      C = Circle(center=p, radius=EDT(p)
+      if isOccupied[each pixel within the circle range] == False:
+      
+        ## set each pixel in range of circle to True in order to overcome overlapping condition
+        isOccupied[for all points in C] = True
+        DrawCircle(C)
+```
+Worst-case complexity for this algorithm is O(n²k), where n is total number of pixels constituting the image and k is the size of denomination set.
