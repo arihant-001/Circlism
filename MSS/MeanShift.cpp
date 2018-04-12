@@ -109,9 +109,8 @@ void MeanShift::MSFiltering(Mat& Img){
 	int Bottom;						// Bottom boundary
 	int NumPts;						// number of points in a hypersphere
 	int step;
-	
+
 	for(int i = 0; i < ROWS; i++){
-                cout<<i<<endl;
    		for(int j = 0; j < COLS; j++){
 			Left = (j - hs) > 0 ? (j - hs) : 0;						// Get Left boundary of the filter
 			Right = (j + hs) < COLS ? (j + hs) : COLS;				// Get Right boundary of the filter
@@ -143,7 +142,7 @@ void MeanShift::MSFiltering(Mat& Img){
 				step++;												// One time end
 			// filter iteration to end
 			}while((PtCur.MSPoint5DColorDistance(PtPrev) > MS_MEAN_SHIFT_TOL_COLOR) && (PtCur.MSPoint5DSpatialDistance(PtPrev) > MS_MEAN_SHIFT_TOL_SPATIAL) && (step < MS_MAX_NUM_CONVERGENCE_STEPS));
-			
+
 			// Scale the color
 			PtCur.PointRGB();
 			// Copy the result to image
@@ -170,7 +169,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 	int Bottom;
 	int NumPts;					// number of points in a hypersphere
 	int step;
-	
+
 	for(int i = 0; i < ROWS; i++){
 		for(int j = 0; j < COLS; j++){
 			Left = (j - hs) > 0 ? (j - hs) : 0;
@@ -186,7 +185,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 				NumPts = 0;
 				for(int hx = Top; hx < Bottom; hx++){
 					for(int hy = Left; hy < Right; hy++){
-						
+
 						Pt.MSPOint5DSet(hx, hy, (float)IMGChannels[0].at<uchar>(hx, hy), (float)IMGChannels[1].at<uchar>(hx, hy), (float)IMGChannels[2].at<uchar>(hx, hy));
 						Pt.PointLab();
 
@@ -200,7 +199,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 				PtCur.MSPoint5DCopy(PtSum);
 				step++;
 			}while((PtCur.MSPoint5DColorDistance(PtPrev) > MS_MEAN_SHIFT_TOL_COLOR) && (PtCur.MSPoint5DSpatialDistance(PtPrev) > MS_MEAN_SHIFT_TOL_SPATIAL) && (step < MS_MAX_NUM_CONVERGENCE_STEPS));
-			
+
 			PtCur.PointRGB();
 			Img.at<Vec3b>(i, j) = Vec3b(PtCur.l, PtCur.a, PtCur.b);
 		}
@@ -239,7 +238,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 				Mode[label * 3 + 0] = PtCur.l;
 				Mode[label * 3 + 1] = PtCur.a;
 				Mode[label * 3 + 2] = PtCur.b;
-				
+
 				// Region Growing 8 Neighbours
 				vector<Point5D> NeighbourPoints;
 				NeighbourPoints.push_back(PtCur);
@@ -259,7 +258,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 							// Check the color
 							if(PtCur.MSPoint5DColorDistance(P) < hr){
 								// Satisfied the color bandwidth
-								Labels[hx][hy] = label;				// Give the same label					
+								Labels[hx][hy] = label;				// Give the same label
 								NeighbourPoints.push_back(P);		// Push it into stack
 								MemberModeCount[label]++;			// This region number plus one
 								// Sum all color in same region
@@ -278,7 +277,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 		}
 	}
 	RegionNumber = label + 1;										// Get region number
-	
+
 	// Get result image from Mode array
 	for(int i = 0; i < ROWS; i++){
 		for(int j = 0; j < COLS; j++){
@@ -305,7 +304,7 @@ void MeanShift::MSSegmentation(Mat& Img){
 //--------------- Delete Memory Applied Before -----------------------
 	delete[] Mode;
 	delete[] MemberModeCount;
-	
+
 	for(int i = 0; i < ROWS; i++)
 		delete[] Labels[i];
 	delete[] Labels;
