@@ -38,3 +38,23 @@ for each radius in D:
         DrawCircle(C)
 ```
 Worst-case complexity for this algorithm is O(n²k), where n is total number of pixels constituting the image and k is the size of denomination set.
+
+## Tools used
+- Jupyter
+- OpenCV
+- PyCairo
+
+## Steps to run the code
+1. Take an input image
+2. Apply Mean-Shift-Segmentation by running the `Maincpp.cpp` file in `MSS` folder providing the image input and save path
+```
+g++ Maincpp.cpp `pkg-config --cflags --libs opencv`  // compile the file
+./a.out "input_path" "save_path"                     // run the file
+```
+3. Run background subtraction.
+Use `background subtractor.ipynb` file to separate background from the input image.
+4. Apply Circlism Algorithm.
+Use `circlism.ipynb` to compute circles corresponding to the image, and generate the image.
+
+## Reference
+This solution is a little modification of algorithmic-art proposed by <b>Sourav De</b> and <b>Partha Bhowmick</b> in 9th International Symposium on Visual Computing as mentioned [here](http://cse.iitkgp.ac.in/~pb/research/circlism/).
